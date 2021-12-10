@@ -11,7 +11,7 @@ import Combine
 class CountryViewModel {
 	
 	@Published var country: Country?
-	@Published var countrySearchResults: [Country] = []
+	@Published var countrySearchResults: [HomeControllerCollectionDataWrapper] = []
 	
 	private var cancellables: Set<AnyCancellable> = Set()
 	
@@ -25,6 +25,9 @@ class CountryViewModel {
 		countryManager.searchCountry(keyword: keyword)
 			.map({
 				return (try? $0.get()) ?? []
+			})
+			.map({
+				return $0.map({ .country(country: $0) })
 			})
 			.sink { [weak self] result in
 				self?.countrySearchResults = result

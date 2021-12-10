@@ -9,9 +9,13 @@ import UIKit
 import Combine
 
 
+enum HomeControllerCollectionDataWrapper: Hashable {
+	case country(country: Country)
+}
+
 // MARK: - Diffable data source
-internal typealias HomeControllerCollectionDataSource = UICollectionViewDiffableDataSource<Int, Int>
-internal typealias HomeControllerCollectionSnapshot = NSDiffableDataSourceSnapshot<Int, Int>
+internal typealias HomeControllerCollectionDataSource = UICollectionViewDiffableDataSource<Int, HomeControllerCollectionDataWrapper>
+internal typealias HomeControllerCollectionSnapshot = NSDiffableDataSourceSnapshot<Int, HomeControllerCollectionDataWrapper>
 
 class HomeController: UIViewController {
 	
@@ -27,10 +31,15 @@ class HomeController: UIViewController {
 		return collectionView
 	}()
 	
+	private let countryViewModel: CountryViewModel = CountryViewModel()
+	
+	private var cancellables: Set<AnyCancellable> = Set()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		setupViews()
+		setupSubscribers()
 	}
 	
 	private func setupViews() {
@@ -56,8 +65,30 @@ class HomeController: UIViewController {
 		view.pin(collectionView)
 	}
 	
+	private func setupSubscribers() {
+		// Search subscriber
+		NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
+			.map({
+				($0.object as! UISearchTextField).text!
+			})
+			.debounce(for: .milliseconds(300), scheduler: RunLoop.main, options: nil)
+			.removeDuplicates()
+			.sink { [weak self] in
+				self?.countryViewModel.searchCountry($0)
+			}
+			.store(in: &cancellables)
+		
+		// View model subscriber
+		countryViewModel
+			.$countrySearchResults
+			.sink { [weak self] countries in
+				self?.applySnapshot(data: countries)
+			}
+			.store(in: &cancellables)
+	}
+	
 	// NOTE: Need to update this if UI changes
-	private func applySnapshot(data: [Int]) {
+	private func applySnapshot(data: [HomeControllerCollectionDataWrapper]) {
 		var snapshot = HomeControllerCollectionSnapshot()
 		
 		snapshot.appendSections([1])
@@ -75,6 +106,7 @@ extension HomeController {
 		let source = HomeControllerCollectionDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
 			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCollectionCell.reuseIdentifier, for: indexPath)
+			cell.backgroundColor = .blue
 			
 			return cell
 		})

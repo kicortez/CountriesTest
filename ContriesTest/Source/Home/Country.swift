@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct CountryName: Decodable {
+struct CountryName {
 	let common: String
 	let official: String
 }
 
-struct Country: Decodable {
+struct Country {
 	private let name: CountryName
 	
 	var officialName: String {
@@ -22,8 +22,13 @@ struct Country: Decodable {
 	var commonName: String {
 		return name.common
 	}
-	
+}
+
+extension Country: Equatable, Hashable {}
+extension Country: Decodable {
 	enum CodingKeys: String, CodingKey {
 		case name
 	}
 }
+
+extension CountryName: Decodable, Equatable, Hashable {}

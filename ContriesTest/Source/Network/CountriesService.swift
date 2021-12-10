@@ -15,7 +15,10 @@ enum CountriesService: APIService {
 	var path: String {
 		switch self {
 		case .searchCountry(let keyword):
-			return "/name/\(keyword)"
+			if let urlAllowedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+				return "/name/\(urlAllowedKeyword)"
+			}
+			return "name/"
 		}
 	}
 	

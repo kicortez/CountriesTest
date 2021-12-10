@@ -14,6 +14,7 @@ struct CountryName {
 
 struct Country {
 	private let name: CountryName
+	var flag: String
 	
 	var officialName: String {
 		return name.official
@@ -27,7 +28,7 @@ struct Country {
 extension Country: Equatable, Hashable {}
 extension Country: Decodable {
 	enum CodingKeys: String, CodingKey {
-		case name
+		case name, flag
 	}
 }
 

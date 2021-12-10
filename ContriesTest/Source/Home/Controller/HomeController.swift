@@ -106,7 +106,14 @@ extension HomeController {
 		let source = HomeControllerCollectionDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
 			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCollectionCell.reuseIdentifier, for: indexPath)
-			cell.backgroundColor = .blue
+			
+			switch itemIdentifier {
+			case .country(let country):
+				if let cell = cell as? CountryCollectionCell {
+					let countryName = "\(String(unicodeScalarLiteral: country.flag)) \(country.officialName)"
+					cell.configure(with: countryName)
+				}
+			}
 			
 			return cell
 		})

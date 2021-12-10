@@ -16,11 +16,6 @@ class CountryCollectionCell: UICollectionViewCell {
 		return label
 	}()
 	
-	private lazy var imageView: UIImageView = {
-		let imageView = UIImageView()
-		return imageView
-	}()
-	
 	private lazy var disclosureImageView: UIImageView = {
 		let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
 		imageView.contentMode = .scaleAspectFit
@@ -47,7 +42,6 @@ class CountryCollectionCell: UICollectionViewCell {
 		
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		
-		stackView.addArrangedSubview(imageView)
 		stackView.addArrangedSubview(nameLabel)
 		stackView.addArrangedSubview(disclosureImageView)
 		
@@ -55,8 +49,6 @@ class CountryCollectionCell: UICollectionViewCell {
 		contentView.pin(stackView)
 		
 		NSLayoutConstraint.activate([
-			imageView.heightAnchor.constraint(equalToConstant: 50),
-			imageView.widthAnchor.constraint(equalToConstant: 50),
 			disclosureImageView.heightAnchor.constraint(equalToConstant: 16),
 			disclosureImageView.widthAnchor.constraint(equalToConstant: 16),
 		])

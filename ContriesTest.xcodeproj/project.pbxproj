@@ -21,6 +21,9 @@
 		EA85033427635E0F0062A719 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033027635E0F0062A719 /* APIService.swift */; };
 		EA85033627635E0F0062A719 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033227635E0F0062A719 /* APIManager.swift */; };
 		EA85033727635E0F0062A719 /* CountriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033327635E0F0062A719 /* CountriesService.swift */; };
+		EA85033927635FB20062A719 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033827635FB20062A719 /* CountryViewModel.swift */; };
+		EA85033B27635FE50062A719 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033A27635FE50062A719 /* CountryManager.swift */; };
+		EA85033D276360A70062A719 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85033C276360A70062A719 /* Country.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		EA85033027635E0F0062A719 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		EA85033227635E0F0062A719 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EA85033327635E0F0062A719 /* CountriesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesService.swift; sourceTree = "<group>"; };
+		EA85033827635FB20062A719 /* CountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
+		EA85033A27635FE50062A719 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
+		EA85033C276360A70062A719 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,9 @@
 			children = (
 				EA850322276359BE0062A719 /* HomeCoordinator.swift */,
 				EA85032A27635B4E0062A719 /* Controller */,
+				EA85033827635FB20062A719 /* CountryViewModel.swift */,
+				EA85033A27635FE50062A719 /* CountryManager.swift */,
+				EA85033C276360A70062A719 /* Country.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA85033D276360A70062A719 /* Country.swift in Sources */,
 				EA85032827635B080062A719 /* UIView+Extensions.swift in Sources */,
 				EA850321276359470062A719 /* AppCoordinator.swift in Sources */,
 				EA85033727635E0F0062A719 /* CountriesService.swift in Sources */,
@@ -291,6 +301,8 @@
 				EA85032E27635BBE0062A719 /* UICollectionView+Extensions.swift in Sources */,
 				EA2B39A3276357A6001401D6 /* AppDelegate.swift in Sources */,
 				EA2B39A5276357A6001401D6 /* SceneDelegate.swift in Sources */,
+				EA85033B27635FE50062A719 /* CountryManager.swift in Sources */,
+				EA85033927635FB20062A719 /* CountryViewModel.swift in Sources */,
 				EA85033427635E0F0062A719 /* APIService.swift in Sources */,
 				EA850325276359E00062A719 /* HomeController.swift in Sources */,
 			);
